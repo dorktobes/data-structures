@@ -22,6 +22,22 @@ var Queue = function() {
   };
 
   someInstance.dequeue = function() {
+    if (Object.keys(storage).length === 0) {
+      console.log('Error can\'t dequeue from empty queue');
+    } else {
+      var min = Object.keys(storage).length;
+      for (var keys in storage) {
+        if (Number(keys) < min) {
+          min = Number(keys);
+        }
+      }
+      //store it 
+      var firstEl = storage[min];
+      //delete it
+      delete storage[min];
+      //return it
+      return firstEl;
+    }
     
     
   };
