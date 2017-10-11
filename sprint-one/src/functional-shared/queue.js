@@ -30,7 +30,24 @@ var queueMethods = {
     
   },
   
-  dequeue: function () {},
+  dequeue: function () {
+    if (Object.keys(this.storage).length === 0) {
+      console.log('Err');
+    } else {
+      var min = Object.keys(this.storage).length;
+      for (var key in this.storage) {
+        if (Number(key) < min) {
+          min = Number(key);
+        }
+      }
+      var firstEl = this.storage[min];
+      delete this.storage[min];
+      return firstEl;
+    }
+    
+    
+    
+  },
   
   size: function () {
     return Object.keys(this.storage).length;
