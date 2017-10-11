@@ -20,6 +20,23 @@ var Stack = function() {
   };
 
   someInstance.pop = function() {
+    if (Object.keys(storage).length === 0) {
+      //throw error
+      console.log('err, stack is empty, cannot pop');
+    } else {
+      var max = 0;
+      for (var prop in storage) {
+        if (Number(prop) > max) {
+          max = Number(prop);
+        }
+      }
+      //store it
+      var lastElement = storage[max];
+      //delete it
+      delete storage[max];
+      //return it
+      return lastElement; 
+    }
   };
 
   someInstance.size = function() {
