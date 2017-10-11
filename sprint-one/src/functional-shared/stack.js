@@ -25,6 +25,19 @@ var stackMethods = {
     }
   },
   pop: function () {
+    if (Object.keys(this.storage).length === 0) {
+      console.log('err');
+    } else {
+      var max = 0;
+      for (var key in this.storage) {
+        if (Number(key) > max) {
+          max = Number(key);
+        }
+      }
+      var lastEl = this.storage[max];
+      delete this.storage[max];
+      return lastEl;  
+    } 
     
   },
   size: function () {
