@@ -16,12 +16,9 @@ var LinkedList = function() {
   };
 
   list.removeHead = function() {
-    //input value : none;
-    //return value: the head of the linked list
     var thisHeadVal = list.head.value;
     list.head = list.head.next;
     return thisHeadVal;
-    //side effects: linked list head is reassigned to the address at the head's next property.
   };
 
   list.contains = function(target) {
@@ -47,4 +44,7 @@ var Node = function (value) {
 
 /*
  * Complexity: What is the time complexity of the above functions?
+   addToTail's complexity is O(1);
+   removeHead's complexity is O(1);
+   contains's complexity is O(n);
  */
