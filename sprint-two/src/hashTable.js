@@ -11,11 +11,6 @@ HashTable.prototype.insert = function(k, v) {
   //creates hashIndex of kString
   var index = getIndexBelowMaxForKey(k, this._limit);
 
-  /*if (!this._storage[index]) {
-    console.log(k + !this._storage[index]);
-    var arr = [];  
-    this._storage.set(index, arr);
-  }*/
   if (!this._storage.get(index)) {
     var arr = [];
     this._storage.set(index, arr);
@@ -24,9 +19,19 @@ HashTable.prototype.insert = function(k, v) {
   
   var tuple = [k, v];
   this._storage.each(function (e, i, c) {
-    
+    //e is the array within each index in this._storage
+    //c is this._storage
+    var hasKey = false;
     if (i === index) {
-      e.push(tuple);
+      e.forEach(function (se, si, sc) {
+        if (se[0] === k) {
+          se[1] = v;
+          hasKey = true;
+        }
+      });
+      if (!hasKey) {
+        e.push(tuple);
+      }
     }
   });
               
@@ -60,6 +65,8 @@ HashTable.prototype.remove = function(k) {
 
 /*
  * Complexity: What is the time complexity of the above functions?
+ hashTables have a variety of time complexity based on the data set.
+ There are linear and constant elements to all functions. comparative to the initial data set, functions are average cases are O(1), but worst case are O(n).
  */
 
 
