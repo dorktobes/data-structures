@@ -9,33 +9,73 @@ var LinkedList = function() {
       list.head = firstHead;
       list.tail = firstHead;
     } else {
-      var nodeInstance = Node(value);
+      var nodeInstance = Node(value, list.tail);
       list.tail.next = nodeInstance;
       list.tail = nodeInstance;
     }
   };
+ 
 
   list.removeHead = function() {
     var thisHeadVal = list.head.value;
     list.head = list.head.next;
+    if (list.head) {
+      list.head.prev = null;
+    }
     return thisHeadVal;
   };
-
+  
   list.contains = function(target) {
-    for (var node in list) {
-      if (list[node].value === target) {
-        return true;
+    var currentNode = list.head;
+    var foundMatch = false;
+    while (currentNode !== list.tail) {
+      if (currentNode.value === target) {
+        foundMatch = true;
+      }
+      currentNode = currentNode.next;
+    }
+    if (currentNode === list.tail) {
+      if (currentNode.value === target) {
+        foundMatch = true;
       }
     }
-    return false;
+    return foundMatch;
   };
+    ////////////////////////ADVNACED METHODS///////////////////////
+    
+    
+  list.addToHead = function (val) {
+    if (!list.head) {
+      list.addToTail(val);
+      return;
+    }
+    var oldHead = this.head;
+    var nodeInstance = Node(val);
+    nodeInstance.next = oldHead;
+    oldHead.prev = nodeInstance;
+    list.head = nodeInstance;
+  };
+
+  list.insertBehind = function (nodeToFollow, value) {
+    var currentNode = list.head;
+    if (list.head.value === nodeToFollow) {
+      
+    }
+    
+  };
+
+  list.removeTail = function () {
+    
+  };  
+  
 
   return list;
 };
 
-var Node = function (value) {
+var Node = function (value, prev) {
   var node = {};
 
+  node.prev = prev || null;
   node.value = value;
   node.next = null;
 
