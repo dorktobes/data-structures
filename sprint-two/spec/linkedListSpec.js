@@ -67,6 +67,36 @@ describe('linkedList', function() {
     linkedList.addToHead(7);
     expect(linkedList.removeHead()).to.equal(7);
   });
+  
+  it('should return tail when removeTail() is called', function() {
+    linkedList.addToTail(1);
+    linkedList.addToTail(2);
+    linkedList.addToTail(3);
+    expect(linkedList.removeTail()).to.equal(3);
+  });
+  
+  it('should not contain tail when removeTail() is called', function() {
+    linkedList.addToTail(1);
+    linkedList.addToTail(2);
+    linkedList.addToTail(3);
+    linkedList.removeTail();
+    expect(linkedList.contains(3)).to.equal(false);
+  });
+  it('should add a node to the linked List when insertBehind is called', function() {
+    linkedList.addToTail(1);
+    linkedList.addToTail(2);
+    linkedList.addToTail(3);
+    linkedList.insertBehind(2, 4);
+    expect(linkedList.contains(4)).to.equal(true);
+  });
+  it('should place node in appropriate spot when insertBehind is called', function() {
+    linkedList.addToTail(1);
+    linkedList.addToTail(2);
+    linkedList.addToTail(3);
+    linkedList.insertBehind(2, 4);
+    linkedList.removeTail();
+    expect(linkedList.removeTail()).to.equal(4);
+  });
 
   // add more tests here to test the functionality of linkedList
 });
