@@ -39,8 +39,10 @@ describe('linkedList', function() {
   it('should contain a value that was added', function() {
     linkedList.addToTail(4);
     linkedList.addToTail(5);
+    linkedList.addToTail(7);
     expect(linkedList.contains(4)).to.equal(true);
     expect(linkedList.contains(5)).to.equal(true);
+    expect(linkedList.contains(7)).to.equal(true);
     expect(linkedList.contains(6)).to.equal(false);
   });
 
@@ -49,6 +51,21 @@ describe('linkedList', function() {
     linkedList.addToTail(5);
     linkedList.removeHead();
     expect(linkedList.contains(4)).to.equal(false);
+  });
+  
+  it('should add a node when addToHead is called', function() {
+    linkedList.addToTail(1);
+    linkedList.addToTail(2);
+    linkedList.addToTail(3);
+    linkedList.addToHead(7);
+    expect(linkedList.contains(7)).to.equal(true);
+  });
+  it('should add a node to head when addToHead is called', function() {
+    linkedList.addToTail(1);
+    linkedList.addToTail(2);
+    linkedList.addToTail(3);
+    linkedList.addToHead(7);
+    expect(linkedList.removeHead()).to.equal(7);
   });
 
   // add more tests here to test the functionality of linkedList
