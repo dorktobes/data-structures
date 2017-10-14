@@ -41,7 +41,7 @@ var LinkedList = function() {
     }
     return foundMatch;
   };
-    ////////////////////////ADVNACED METHODS///////////////////////
+  ////////////////////////ADVANCED METHODS///////////////////////
     
     
   list.addToHead = function (val) {
@@ -58,14 +58,34 @@ var LinkedList = function() {
 
   list.insertBehind = function (nodeToFollow, value) {
     var currentNode = list.head;
-    if (list.head.value === nodeToFollow) {
-      
+    var newNode = Node(value);
+    
+    while (currentNode !== list.tail) {
+      if (currentNode.value === nodeToFollow) {
+        newNode.prev = currentNode;
+        newNode.next = currentNode.next;
+        newNode.next.prev = newNode;
+        currentNode.next = newNode;
+        return;
+        
+      }
+      currentNode = currentNode.next;
+    }
+    
+    if (currentNode === list.tail) {
+      if (currentNode.value === nodeToFollow) {
+        list.addToTail(newNode);
+      }
     }
     
   };
 
   list.removeTail = function () {
-    
+    var oldTailVal = list.tail.value;
+    var newTail = list.tail.prev;
+    newTail.next = null;
+    list.tail = newTail;
+    return oldTailVal;
   };  
   
 
@@ -87,4 +107,7 @@ var Node = function (value, prev) {
    addToTail's complexity is O(1);
    removeHead's complexity is O(1);
    contains's complexity is O(n);
+   addToHead's complexity is O(1);
+   removeFromTail's complexity is O(1);
+   insertBehind's complexity is O(n);
  */
